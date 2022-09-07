@@ -31,6 +31,14 @@ Route::group(['middleware' => ['auth']], function(){
         return view('dash');
     })->name('dash');
 
-    Route::get('/mcf/update/', [MCFController::class, 'index'])->name('mcf.update');
-    Route::post('/mcf/update/', [MCFController::class, 'update'])->name('mcf.update');
+    // MCF //
+    Route::get('/mcf/', [MCFController::class, 'index'])->name('mcf.index');
+    Route::get('/mcf/add/', [MCFController::class, 'create'])->name('mcf.create');
+    Route::post('/mcf/add/', [MCFController::class, 'store'])->name('mcf.save');
+    Route::get('/mcf/edit/{id}', [MCFController::class, 'edit'])->name('mcf.edit');
+    Route::put('/mcf/edit/{id}', [MCFController::class, 'update'])->name('mcf.update');
+    Route::delete('/mcf/delete/{id}', [MCFController::class, 'destroy'])->name('mcf.delete');
+    Route::get('/mcf/consolidated/', [MCFController::class, 'show'])->name('mcf.show');
+    // END MCF //
+    
 });

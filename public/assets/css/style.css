@@ -6,7 +6,7 @@
 .stickytblhead>tr>td{
     color: #fff;
 }
-.table td:first-child {
+.tblLsg td:first-child {
     background-color: #323A45;
     color: #00bdaa;
     position: sticky;

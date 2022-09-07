@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Suchitwa Mission - Schemes">
     <meta name="keyword" content="Suchitwa Mission - Schemes">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Schemes</title>
     <link rel="icon" href="{{ public_path().'/assets/images/favicon.png' }}" type="image/x-icon"> <!-- Favicon-->
 
     <!-- plugin css file  -->
     <link rel="stylesheet" href="{{ public_path().'/assets/css/dataTables.min.css' }}">
+    <link rel="stylesheet" href="{{ public_path().'/assets/css/select2.min.css' }}">
 
     <!-- project css file  -->
     <link rel="stylesheet" href="{{ public_path().'/assets/css/al.style.min.css' }}">
@@ -98,16 +100,16 @@
                             <div class="col-lg-2">
                                 <h5 class="text-primary">MCF</h5>
                                 <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="text-dark" href="#">List</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="/mcf/update/">Update</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Consolidated</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/mcf/">List</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/mcf/add/">Add</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/mcf/consolidated/">Consolidated</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-2">
                                 <h5 class="text-primary">RRF</h5>
                                 <ul class="nav flex-column">
                                     <li class="nav-item"><a class="text-dark" href="#">List</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Update</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="#">Add</a></li>
                                     <li class="nav-item"><a class="text-dark" href="#">Consolidated</a></li>
                                 </ul>
                             </div>
@@ -115,7 +117,7 @@
                                 <h5 class="text-primary">HKS</h5>
                                 <ul class="nav flex-column">
                                     <li class="nav-item"><a class="text-dark" href="#">List</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Update</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="#">Add</a></li>
                                     <li class="nav-item"><a class="text-dark" href="#">Consolidated</a></li>
                                 </ul>
                             </div>
@@ -123,7 +125,7 @@
                                 <h5 class="text-primary">C@SCHOOL</h5>
                                 <ul class="nav flex-column">
                                     <li class="nav-item"><a class="text-dark" href="#">List</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Update</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="#">Add</a></li>
                                     <li class="nav-item"><a class="text-dark" href="#">Consolidated</a></li>
                                 </ul>
                             </div>
@@ -331,9 +333,11 @@
 <!-- Plugin Js -->
 <script src="{{ public_path().'/assets/bundles/apexcharts.bundle.js' }}"></script>
 <script src="{{ public_path().'/assets/bundles/dataTables.bundle.js' }}"></script>
+<script src="{{ public_path().'/assets/bundles/select2.bundle.js' }}"></script>
 
 <!-- Jquery Page Js -->
 <script src="{{ public_path().'/assets/js/template.js' }}"></script>
 <script src="{{ public_path().'/assets/js/page/index.js' }}"></script>
+<script src="{{ public_path().'/assets/js/scripts.js' }}"></script>
 </body>
 </html>
