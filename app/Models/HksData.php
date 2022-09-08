@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class McfData extends Model
+class HksData extends Model
 {
     use HasFactory;
 
@@ -17,11 +17,5 @@ class McfData extends Model
         'q3',
         'q4',
         'q5',
-        'q6',
-        'q7',
-        'q8',
-        'q9',
-        'q10',
-        'q11',
     ];
 }

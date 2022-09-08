@@ -8,7 +8,7 @@
             <div class="col">
                 <ol class="breadcrumb bg-transparent mb-0">
                     <li class="breadcrumb-item"><a class="text-secondary" href="/dash/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">MCF => Add</li>
+                    <li class="breadcrumb-item active" aria-current="page">RRF => Add</li>
                 </ol>
             </div>
             <div class="col-auto">
@@ -49,9 +49,9 @@
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="card">
                     <div class="card-header py-3 bg-transparent border-bottom-0">
-                        <h5 class="m-0 text-primary">Add Material Collection Facility</h5>
+                        <h5 class="m-0 text-primary">Add Resource Recovery Facility</h5>
                     </div>
-                    <form method="post" action="{{ route('mcf.save') }}">
+                    <form method="post" action="{{ route('rrf.save') }}">
                         @csrf
                         <div class="card-body">
                             <div class="row mb-3">

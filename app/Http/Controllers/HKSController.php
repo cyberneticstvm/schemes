@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\McfMaster;
-use App\Models\McfData;
+use App\Models\HksMaster;
+use App\Models\HksData;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use DB;
 
-class MCFController extends Controller
+class HKSController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,10 +24,11 @@ class MCFController extends Controller
         $this->month_name = $this->today->format("F");
         $this->month = $this->today->month;
     }
+
     public function index()
     {
-        $mcfs = McfMaster::leftjoin('districts as d', 'd.id', 'mcf_masters.district')->select('d.name', 'mcf_masters.id', 'mcf_masters.month', 'mcf_masters.year', 'mcf_masters.created_at', 'mcf_masters.updated_at')->where('mcf_masters.district', Auth::user()->district)->get();
-        return view('mcf.index', compact('mcfs'));
+        $hkss = HksMaster::leftjoin('districts as d', 'd.id', 'hks_masters.district')->select('d.name', 'hks_masters.id', 'hks_masters.month', 'hks_masters.year', 'hks_masters.created_at', 'hks_masters.updated_at')->where('hks_masters.district', Auth::user()->district)->get();
+        return view('hks.index', compact('hkss'));
     }
 
     /**
@@ -37,19 +38,19 @@ class MCFController extends Controller
      */
     public function create()
     {
-        $scheme = DB::table('schemes')->find(1);
+        $scheme = DB::table('schemes')->find(3);
         $questions = DB::table('questions')->where('scheme', $scheme->id)->get();
         $districts = DB::table('districts')->where('id', Auth::user()->district)->orderBy('name')->get();
         $corporations = DB::table('corporations')->where('district', Auth::user()->district)->orderBy('name')->get();
         $municipalities = DB::table('municipalities')->where('district', Auth::user()->district)->orderBy('name')->get();
         $gramapanchayats = DB::table('gramapanchayats')->where('district', Auth::user()->district)->orderBy('name')->get();
         $year = $this->year; $mname = $this->month_name; $month = $this->month;
-        $data = McfMaster::where('district', Auth::user()->district)->where('month', $month)->where('year', $year)->get()->first();
+        $data = HksMaster::where('district', Auth::user()->district)->where('month', $month)->where('year', $year)->get()->first();
         if($data):
-            $records = DB::table('mcf_data')->where('mcf_id', $data->id)->orderBy('id')->get();
-            return view('mcf.edit', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname', 'data', 'records'));
+            $records = DB::table('hks_data')->where('hks_id', $data->id)->orderBy('id')->get();
+            return view('hks.edit', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname', 'data', 'records'));
         else:
-            return view('mcf.create', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname'));
+            return view('hks.create', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname'));
         endif;
     }
 
@@ -69,31 +70,25 @@ class MCFController extends Controller
         $input = $request->all();
         $input['created_by'] = Auth::user()->id;
         $input['updated_by'] = Auth::user()->id;
-        $mcf = McfMaster::create($input);
+        $hks = HksMaster::create($input);
         try{
             for($i=0; $i<count($request->q1); $i++):
                 $data[] = [
-                    'mcf_id' => $mcf->id,
+                    'hks_id' => $hks->id,
                     'lsg_id' => $input['lid'.$i][0],
                     'lsg_type'=> $input['ltype'.$i][0],
                     'q1' => ($request->q1[$i] > 0) ? $request->q1[$i] : 0,
                     'q2' => ($request->q2[$i] > 0) ? $request->q2[$i] : 0,
                     'q3' => ($request->q3[$i] > 0) ? $request->q3[$i] : 0,
                     'q4' => ($request->q4[$i] > 0) ? $request->q4[$i] : 0,
-                    'q5' => ($request->q5[$i] > 0) ? $request->q5[$i] : 0,
-                    'q6' => ($request->q6[$i] > 0) ? $request->q6[$i] : 0,
-                    'q7' => ($request->q7[$i] > 0) ? $request->q7[$i] : 0,
-                    'q8' => ($request->q8[$i] > 0) ? $request->q8[$i] : 0,
-                    'q9' => ($request->q9[$i] > 0) ? $request->q9[$i] : 0,
-                    'q10' => ($request->q10[$i] > 0) ? $request->q10[$i] : 0,
-                    'q11' => (!empty($request->q11[$i])) ? $request->q11[$i] : NULL,
+                    'q5' => (!empty($request->q5[$i])) ? $request->q5[$i] : NULL,
                 ];
             endfor;
-            DB::table('mcf_data')->insert($data);
+            DB::table('hks_data')->insert($data);
         }catch(Exception $e){
             throw $e;
         }
-        return redirect()->route('mcf.index')->with('success','Data created successfully');
+        return redirect()->route('hks.index')->with('success','Data created successfully');
     }
 
     /**
@@ -104,8 +99,8 @@ class MCFController extends Controller
      */
     public function show()
     {
-        $data = DB::table('districts as d')->leftJoin('corporations as c', 'd.id', 'c.district')->leftJoin('mcf_masters as m', 'd.id', 'm.district')->selectRaw("d.id, d.name as district, count(c.id) as ccount, IFNULL(sum(c.mcf_reqd), 0) mcf_reqd")->orderBy('id', 'asc')->groupBy('d.id', 'd.name')->get();
-        return view("mcf.consolidated", compact('data'));
+        $data = DB::table('districts as d')->leftJoin('corporations as c', 'd.id', 'c.district')->leftJoin('hks_masters as m', 'd.id', 'm.district')->selectRaw("d.id, d.name as district, count(c.id) as ccount, IFNULL(sum(c.hks_reqd), 0) hks_reqd")->orderBy('id', 'asc')->groupBy('d.id', 'd.name')->get();
+        return view("hks.consolidated", compact('data'));
     }
 
     /**
@@ -116,16 +111,16 @@ class MCFController extends Controller
      */
     public function edit($id)
     {
-        $scheme = DB::table('schemes')->find(1);
+        $scheme = DB::table('schemes')->find(3);
         $questions = DB::table('questions')->where('scheme', $scheme->id)->get();
         $districts = DB::table('districts')->where('id', Auth::user()->district)->orderBy('name')->get();
         $corporations = DB::table('corporations')->where('district', Auth::user()->district)->orderBy('name')->get();
         $municipalities = DB::table('municipalities')->where('district', Auth::user()->district)->orderBy('name')->get();
         $gramapanchayats = DB::table('gramapanchayats')->where('district', Auth::user()->district)->orderBy('name')->get();
         $year = $this->year; $mname = $this->month_name; $month = $this->month;
-        $data = McfMaster::find($id);
-        $records = DB::table('mcf_data')->where('mcf_id', $data->id)->orderBy('id')->get();
-        return view('mcf.edit', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname', 'data', 'records'));
+        $data = HksMaster::find($id);
+        $records = DB::table('hks_data')->where('hks_id', $data->id)->orderBy('id')->get();
+        return view('hks.edit', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname', 'data', 'records'));
     }
 
     /**
@@ -143,35 +138,30 @@ class MCFController extends Controller
             'year' => 'required',
         ]);
         $input = $request->all();
-        $mcf = McfMaster::find($id);
-        $input['created_by'] = $mcf->getOriginal('created_by');
+        $hks = HksMaster::find($id);
+        $input['created_by'] = $hks->getOriginal('created_by');
         $input['updated_by'] = Auth::user()->id;
-        $mcf->update($input);
-        DB::table('mcf_data')->where('mcf_id', $id)->delete();
+        $hks->update($input);
+        DB::table('hks_data')->where('hks_id', $id)->delete();
         try{
             for($i=0; $i<count($request->q1); $i++):
                 $data[] = [
-                    'mcf_id' => $mcf->id,
+                    'hks_id' => $hks->id,
                     'lsg_id' => $input['lid'.$i][0],
                     'lsg_type'=> $input['ltype'.$i][0],
                     'q1' => ($request->q1[$i] > 0) ? $request->q1[$i] : 0,
                     'q2' => ($request->q2[$i] > 0) ? $request->q2[$i] : 0,
                     'q3' => ($request->q3[$i] > 0) ? $request->q3[$i] : 0,
                     'q4' => ($request->q4[$i] > 0) ? $request->q4[$i] : 0,
-                    'q5' => ($request->q5[$i] > 0) ? $request->q5[$i] : 0,
-                    'q6' => ($request->q6[$i] > 0) ? $request->q6[$i] : 0,
-                    'q7' => ($request->q7[$i] > 0) ? $request->q7[$i] : 0,
-                    'q8' => ($request->q8[$i] > 0) ? $request->q8[$i] : 0,
-                    'q9' => ($request->q9[$i] > 0) ? $request->q9[$i] : 0,
-                    'q10' => ($request->q10[$i] > 0) ? $request->q10[$i] : 0,
-                    'q11' => (!empty($request->q11[$i])) ? $request->q11[$i] : NULL,
+                    'q5' => (!empty($request->q5[$i])) ? $request->q5[$i] : NULL,
+                    
                 ];
             endfor;
-            DB::table('mcf_data')->insert($data);
+            DB::table('hks_data')->insert($data);
         }catch(Exception $e){
             throw $e;
         }
-        return redirect()->route('mcf.index')->with('success','Data updated successfully');
+        return redirect()->route('hks.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -182,8 +172,8 @@ class MCFController extends Controller
      */
     public function destroy($id)
     {
-        McfMaster::find($id)->delete();
-        return redirect()->route('mcf.index')
+        HksMaster::find($id)->delete();
+        return redirect()->route('hks.index')
                         ->with('success','Record deleted successfully');
     }
 }

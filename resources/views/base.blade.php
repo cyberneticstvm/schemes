@@ -108,25 +108,25 @@
                             <div class="col-lg-2">
                                 <h5 class="text-primary">RRF</h5>
                                 <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="text-dark" href="#">List</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Add</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Consolidated</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/rrf/">List</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/rrf/add/">Add</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/rrf/consolidated/">Consolidated</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-2">
                                 <h5 class="text-primary">HKS</h5>
                                 <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="text-dark" href="#">List</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Add</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Consolidated</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/hks/">List</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/hks/add/">Add</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/hks/consolidated/">Consolidated</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-2">
                                 <h5 class="text-primary">C@SCHOOL</h5>
                                 <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="text-dark" href="#">List</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Add</a></li>
-                                    <li class="nav-item"><a class="text-dark" href="#">Consolidated</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/cschool/">List</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/cschool/add/">Add</a></li>
+                                    <li class="nav-item"><a class="text-dark" href="/cschool/consolidated/">Consolidated</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-2"></div>

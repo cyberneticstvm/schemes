@@ -8,7 +8,7 @@
             <div class="col">
                 <ol class="breadcrumb bg-transparent mb-0">
                     <li class="breadcrumb-item"><a class="text-secondary" href="/dash/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">MCF => List</li>
+                    <li class="breadcrumb-item active" aria-current="page">C@S => List</li>
                 </ol>
             </div>
             <div class="col-auto">
@@ -49,7 +49,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="card">
                     <div class="card-header py-3 bg-transparent border-bottom-0">
-                        <h5 class="m-0 text-primary">Material Collection Facility List</h5>
+                        <h5 class="m-0 text-primary">Collectors @ School List</h5>
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
@@ -58,17 +58,17 @@
                                     <thead><tr><th>SL No.</th><th>District</th><th>Month</th><th>Year</th><th>Created at</th><th>Updated at</th><th>Edit</th><th>Remove</th></tr></thead>
                                     <tbody>
                                         @php $c = 1; @endphp
-                                        @forelse($mcfs as $key => $mcf)
+                                        @forelse($cschools as $key => $cschool)
                                             <tr>
                                                 <td>{{ $c++ }}</td>
-                                                <td>{{ $mcf->name }}</td>
-                                                <td>{{ $mcf->month }}</td>
-                                                <td>{{ $mcf->year }}</td>
-                                                <td>{{ $mcf->created_at }}</td>
-                                                <td>{{ $mcf->updated_at }}</td>
-                                                <td><a class='btn btn-link' href="{{ route('mcf.edit', $mcf->id) }}"><i class="fa fa-pencil text-warning"></i></a></td>
+                                                <td>{{ $cschool->name }}</td>
+                                                <td>{{ $cschool->month }}</td>
+                                                <td>{{ $cschool->year }}</td>
+                                                <td>{{ $cschool->created_at }}</td>
+                                                <td>{{ $cschool->updated_at }}</td>
+                                                <td><a class='btn btn-link' href="{{ route('cschool.edit', $cschool->id) }}"><i class="fa fa-pencil text-warning"></i></a></td>
                                                 <td>
-                                                    <form method="post" action="{{ route('mcf.delete', $mcf->id) }}">
+                                                    <form method="post" action="{{ route('cschool.delete', $cschool->id) }}">
                                                         @csrf 
                                                         @method("DELETE")
                                                         <button type="submit" class="btn btn-link" onclick="javascript: return confirm('Are you sure want to delete this record?');"><i class="fa fa-trash text-danger"></i></button>
