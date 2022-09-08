@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CSchoolMaster;
-use App\Models\CSchoolData;
+use App\Models\CschoolMaster;
+use App\Models\CschoolData;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use DB;
@@ -27,7 +27,7 @@ class CSchoolController extends Controller
 
     public function index()
     {
-        $cschools = CSchoolMaster::leftjoin('districts as d', 'd.id', 'cschool_masters.district')->select('d.name', 'cschool_masters.id', 'cschool_masters.month', 'cschool_masters.year', 'cschool_masters.created_at', 'cschool_masters.updated_at')->where('cschool_masters.district', Auth::user()->district)->get();
+        $cschools = CschoolMaster::leftjoin('districts as d', 'd.id', 'cschool_masters.district')->select('d.name', 'cschool_masters.id', 'cschool_masters.month', 'cschool_masters.year', 'cschool_masters.created_at', 'cschool_masters.updated_at')->where('cschool_masters.district', Auth::user()->district)->get();
         return view('cschool.index', compact('cschools'));
     }
 
