@@ -89,7 +89,7 @@ class MCFController extends Controller
                     'q11' => (!empty($request->q11[$i])) ? $request->q11[$i] : NULL,
                 ];
             endfor;*/
-            echo count($request->q1);
+            dd($request);
             die;
             //DB::table('mcf_data')->insert($data);
         }catch(Exception $e){
