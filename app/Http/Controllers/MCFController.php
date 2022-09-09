@@ -69,7 +69,7 @@ class MCFController extends Controller
         $input = $request->all();
         $input['created_by'] = Auth::user()->id;
         $input['updated_by'] = Auth::user()->id;
-        $mcf = McfMaster::create($input);
+        //$mcf = McfMaster::create($input);
         try{
             for($i=0; $i<count($request->q1); $i++):
                 $data[] = [
@@ -89,7 +89,9 @@ class MCFController extends Controller
                     'q11' => (!empty($request->q11[$i])) ? $request->q11[$i] : NULL,
                 ];
             endfor;
-            DB::table('mcf_data')->insert($data);
+            dd($data);
+            die;
+            //DB::table('mcf_data')->insert($data);
         }catch(Exception $e){
             throw $e;
         }
