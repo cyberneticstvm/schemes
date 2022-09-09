@@ -73,7 +73,7 @@ class MCFController extends Controller
         try{
             for($i=0; $i<count($request->q1); $i++):
                 $data[] = [
-                    'mcf_id' => $mcf->id,
+                    'mcf_id' => 1, //$mcf->id,
                     'lsg_id' => $input['lid'.$i][0],
                     'lsg_type'=> $input['ltype'.$i][0],
                     'q1' => ($request->q1[$i] > 0) ? $request->q1[$i] : 0,
