@@ -16,6 +16,5 @@ class HksData extends Model
         'q2',
         'q3',
         'q4',
-        'q5',
     ];
 }

@@ -83,10 +83,7 @@ class MCFController extends Controller
                     'q5' => ($request->q5[$i] > 0) ? $request->q5[$i] : 0,
                     'q6' => ($request->q6[$i] > 0) ? $request->q6[$i] : 0,
                     'q7' => ($request->q7[$i] > 0) ? $request->q7[$i] : 0,
-                    'q8' => ($request->q8[$i] > 0) ? $request->q8[$i] : 0,
-                    'q9' => ($request->q9[$i] > 0) ? $request->q9[$i] : 0,
-                    'q10' => ($request->q10[$i] > 0) ? $request->q10[$i] : 0,
-                    'q11' => (!empty($request->q11[$i])) ? $request->q11[$i] : NULL,
+                    'q8' => (!empty($request->q8[$i])) ? $request->q8[$i] : NULL,
                 ];
             endfor;
             DB::table('mcf_data')->insert($data);
@@ -161,10 +158,7 @@ class MCFController extends Controller
                     'q5' => ($request->q5[$i] > 0) ? $request->q5[$i] : 0,
                     'q6' => ($request->q6[$i] > 0) ? $request->q6[$i] : 0,
                     'q7' => ($request->q7[$i] > 0) ? $request->q7[$i] : 0,
-                    'q8' => ($request->q8[$i] > 0) ? $request->q8[$i] : 0,
-                    'q9' => ($request->q9[$i] > 0) ? $request->q9[$i] : 0,
-                    'q10' => ($request->q10[$i] > 0) ? $request->q10[$i] : 0,
-                    'q11' => (!empty($request->q11[$i])) ? $request->q11[$i] : NULL,
+                    'q8' => (!empty($request->q8[$i])) ? $request->q8[$i] : NULL,
                 ];
             endfor;
             DB::table('mcf_data')->insert($data);

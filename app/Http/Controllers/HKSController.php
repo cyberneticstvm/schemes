@@ -80,8 +80,7 @@ class HKSController extends Controller
                     'q1' => ($request->q1[$i] > 0) ? $request->q1[$i] : 0,
                     'q2' => ($request->q2[$i] > 0) ? $request->q2[$i] : 0,
                     'q3' => ($request->q3[$i] > 0) ? $request->q3[$i] : 0,
-                    'q4' => ($request->q4[$i] > 0) ? $request->q4[$i] : 0,
-                    'q5' => (!empty($request->q5[$i])) ? $request->q5[$i] : NULL,
+                    'q4' => (!empty($request->q4[$i])) ? $request->q4[$i] : NULL,
                 ];
             endfor;
             DB::table('hks_data')->insert($data);
@@ -152,8 +151,7 @@ class HKSController extends Controller
                     'q1' => ($request->q1[$i] > 0) ? $request->q1[$i] : 0,
                     'q2' => ($request->q2[$i] > 0) ? $request->q2[$i] : 0,
                     'q3' => ($request->q3[$i] > 0) ? $request->q3[$i] : 0,
-                    'q4' => ($request->q4[$i] > 0) ? $request->q4[$i] : 0,
-                    'q5' => (!empty($request->q5[$i])) ? $request->q5[$i] : NULL,
+                    'q4' => (!empty($request->q4[$i])) ? $request->q4[$i] : NULL,
                     
                 ];
             endfor;
