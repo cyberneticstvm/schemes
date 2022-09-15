@@ -25,7 +25,7 @@
                                                 <td>{{ $mcf->year }}</td>
                                                 <td>{{ $mcf->created_at }}</td>
                                                 <td>{{ $mcf->updated_at }}</td>
-                                                <td><a class='btn btn-link' href="{{ route('mcf.edit', $mcf->id) }}"><i class="fa fa-edit text-warning"></i></a></td>
+                                                <td><a class='btn btn-link' href="{{ route('mcf.edit', $mcf->id) }}"></a></td>
                                                 <td>
                                                     <form method="post" action="{{ route('mcf.delete', $mcf->id) }}">
                                                         @csrf 

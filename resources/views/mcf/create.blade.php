@@ -45,7 +45,7 @@
                                             @endforeach
                                         </tr></thead>
                                         <tbody>
-                                            <tr><td class="bg-primary text-white">Corporations</td><td colspan="{{ $scheme->question_count }}" class="bg-primary text-white"></td></tr>
+                                            <tr><td class="bg-success text-white">Corporations</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             @php $k = 0; @endphp
                                             @foreach($corporations as $key => $corp)
                                             @php $c = 1 @endphp
@@ -63,7 +63,7 @@
                                                 </tr>
                                                 @php $k++; @endphp
                                             @endforeach
-                                            <tr><td class="bg-primary text-white">Municipalities</td><td colspan="{{ $scheme->question_count }}" class="bg-primary text-white"></td></tr>
+                                            <tr><td class="bg-success text-white">Municipalities</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             
                                             @foreach($municipalities as $key => $mun)
                                             @php $c = 1 @endphp
@@ -81,7 +81,7 @@
                                                 </tr>
                                                 @php $k++; @endphp
                                             @endforeach
-                                            <tr><td class="bg-primary text-white">Grama Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-primary text-white"></td></tr>
+                                            <tr><td class="bg-success text-white">Grama Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             
                                             @foreach($gramapanchayats as $key => $gp)
                                             @php $c = 1 @endphp

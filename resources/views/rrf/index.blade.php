@@ -25,7 +25,7 @@
                                                 <td>{{ $rrf->year }}</td>
                                                 <td>{{ $rrf->created_at }}</td>
                                                 <td>{{ $rrf->updated_at }}</td>
-                                                <td><a class='btn btn-link' href="{{ route('rrf.edit', $rrf->id) }}"><i class="fa fa-edit text-warning"></i></a></td>
+                                                <td><a class='btn btn-link' href="{{ route('rrf.edit', $rrf->id) }}"></a></td>
                                                 <td>
                                                     <form method="post" action="{{ route('rrf.delete', $rrf->id) }}">
                                                         @csrf 

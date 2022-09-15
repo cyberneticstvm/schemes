@@ -28,6 +28,7 @@ Route::get('/login/', function () {
 
 //Route::get('/consolidated/{scheme}/{district}/', [HelperController::class, 'consolidated'])->name('scheme.consolidated');
 Route::get('/mcf/consolidated/', [MCFController::class, 'show'])->name('mcf.show');
+Route::post('/mcf/consolidated/', [MCFController::class, 'showc'])->name('mcf.showc');
 Route::get('/rrf/consolidated/', [RRFController::class, 'show'])->name('rrf.show');
 Route::get('/hks/consolidated/', [HKSController::class, 'show'])->name('hks.show');
 Route::get('/cschool/consolidated/', [CSchoolController::class, 'show'])->name('cschool.show');

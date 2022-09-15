@@ -21,4 +21,8 @@ $(function(){
     $('#dataTbl').dataTable({
         responsive: true
     });
+
+    $(".fsub").change(function(){
+        $(this).closest("form").submit();
+    })
 });

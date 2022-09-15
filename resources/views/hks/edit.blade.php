@@ -46,7 +46,7 @@
                                             @endforeach
                                         </tr></thead>
                                         <tbody>
-                                            <tr><td class="bg-primary text-white">Corporations</td><td colspan="{{ $scheme->question_count }}" class="bg-primary text-white"></td></tr>
+                                            <tr><td class="bg-success text-white">Corporations</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             @php $k = 0; @endphp
                                             @foreach($records as $key => $corp)
                                                 @if($corp->lsg_type == 'CO')
@@ -66,7 +66,7 @@
                                                     @php $k++; @endphp
                                                 @endif
                                             @endforeach
-                                            <tr><td class="bg-primary text-white">Municipalities</td><td colspan="{{ $scheme->question_count }}" class="bg-primary text-white"></td></tr>
+                                            <tr><td class="bg-success text-white">Municipalities</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             
                                             @foreach($records as $key => $mun)
                                                 @if($mun->lsg_type == 'MP')
@@ -86,7 +86,7 @@
                                                     @php $k++; @endphp
                                                 @endif
                                             @endforeach
-                                            <tr><td class="bg-primary text-white">Grama Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-primary text-white"></td></tr>
+                                            <tr><td class="bg-success text-white">Grama Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             
                                             @foreach($records as $key => $gp)
                                                 @if($gp->lsg_type == 'GP')

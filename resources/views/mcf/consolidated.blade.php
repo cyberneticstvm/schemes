@@ -11,7 +11,37 @@
                         <h5 class="m-0 text-primary">Material Collection Facility Consolidated</h5>
                     </div>
                     <div class="card-body">
-                        <div class="row mb-3">
+                        <form method="post" action="{{ route('mcf.showc') }}">
+                            @csrf
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    <label class="form-label">District</label>
+                                    <select class="form-control select2 fsub" name="district">
+                                        <option value="0">Select</option>
+                                        @foreach($districts as $key => $ds)
+                                            <option value="{{ $ds->id }}"  {{ ($ds->id == $district) ? 'selected' : '' }}>{{ $ds->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Month</label>
+                                    <select class="form-control select2 fsub" name="month">
+                                        <option value="0">Select</option>                                        
+                                        @foreach($months as $key => $mn)
+                                            <option value="{{ $mn->id }}"  {{ ($mn->id == $month) ? 'selected' : '' }}>{{ $mn->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Year</label>                                
+                                    <select class="form-control select2 fsub" name="year">
+                                        <option value="0">Select</option>                                        
+                                        <option value="{{ $year }}" selected>{{ $year }}</option>
+                                    </select>
+                                </div>                            
+                            </div>
+                        </form>
+                        <div class="row">
                             <div class="col-md-12 table-responsive">
                                 <table class="table table-bordered table-sm table-striped table-hover">
                                     <thead>
@@ -22,10 +52,10 @@
                                         @php $c = 1; @endphp
                                         @forelse($data as $key => $row)
                                             @php
-                                                $mcf_co = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'CO')->where('m.district', $row->id)->sum('md.q3');
-                                                $mcf_mp = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'MP')->where('m.district', $row->id)->sum('md.q3');
+                                                $mcf_co = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'CO')->where('m.district', $row->id)->sum('md.q1');
+                                                $mcf_mp = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'MP')->where('m.district', $row->id)->sum('md.q1');
                                                 $mcf_mp_reqd = DB::table('municipalities as m')->leftJoin('districts as d', 'm.district', 'd.id')->where('m.district', $row->id)->sum('m.mcf_reqd');
-                                                $mcf_gp = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'GP')->where('m.district', $row->id)->sum('md.q3');
+                                                $mcf_gp = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'GP')->where('m.district', $row->id)->sum('md.q1');
                                                 $mcf_gp_reqd = DB::table('gramapanchayats as g')->leftJoin('districts as d', 'g.district', 'd.id')->where('g.district', $row->id)->sum('g.mcf_reqd');
                                             @endphp
                                             <tr>

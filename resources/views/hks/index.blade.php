@@ -25,7 +25,7 @@
                                                 <td>{{ $hks->year }}</td>
                                                 <td>{{ $hks->created_at }}</td>
                                                 <td>{{ $hks->updated_at }}</td>
-                                                <td><a class='btn btn-link' href="{{ route('hks.edit', $hks->id) }}"><i class="fa fa-edit text-warning"></i></a></td>
+                                                <td><a class='btn btn-link' href="{{ route('hks.edit', $hks->id) }}"></a></td>
                                                 <td>
                                                     <form method="post" action="{{ route('hks.delete', $hks->id) }}">
                                                         @csrf 
