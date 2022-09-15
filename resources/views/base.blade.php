@@ -129,7 +129,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <span class="badge badge-warning navbar-badge"></span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header"><a href="/logout/">Signout</a></span>
+            <span class="dropdown-header"><a href="/logout/">{{ (Auth::user()) ? 'Signout' : 'Login' }}</a></span>
             <div class="dropdown-divider"></div>
           </div>
         </li>
