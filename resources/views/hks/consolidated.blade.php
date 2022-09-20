@@ -52,10 +52,10 @@
                                         @php $c = 1; @endphp
                                         @forelse($data as $key => $row)
                                             @php
-                                                $hks_co = DB::table('hks_data as md')->leftJoin('hks_masters as m', 'm.id', 'md.hks_id')->where('md.lsg_type', 'CO')->where('m.district', $row->id)->sum('md.q3');
-                                                $hks_mp = DB::table('hks_data as md')->leftJoin('hks_masters as m', 'm.id', 'md.hks_id')->where('md.lsg_type', 'MP')->where('m.district', $row->id)->sum('md.q3');
+                                                $hks_co = DB::table('hks_data as md')->leftJoin('hks_masters as m', 'm.id', 'md.hks_id')->where('md.lsg_type', 'CO')->where('m.district', $row->id)->sum('md.q2');
+                                                $hks_mp = DB::table('hks_data as md')->leftJoin('hks_masters as m', 'm.id', 'md.hks_id')->where('md.lsg_type', 'MP')->where('m.district', $row->id)->sum('md.q2');
                                                 $hks_mp_reqd = DB::table('municipalities as m')->leftJoin('districts as d', 'm.district', 'd.id')->where('m.district', $row->id)->count('m.hks_reqd');
-                                                $hks_gp = DB::table('hks_data as md')->leftJoin('hks_masters as m', 'm.id', 'md.hks_id')->where('md.lsg_type', 'GP')->where('m.district', $row->id)->sum('md.q3');
+                                                $hks_gp = DB::table('hks_data as md')->leftJoin('hks_masters as m', 'm.id', 'md.hks_id')->where('md.lsg_type', 'GP')->where('m.district', $row->id)->sum('md.q2');
                                                 $hks_gp_reqd = DB::table('gramapanchayats as g')->leftJoin('districts as d', 'g.district', 'd.id')->where('g.district', $row->id)->count('g.hks_reqd');
                                             @endphp
                                             <tr>
