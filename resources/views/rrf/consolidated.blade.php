@@ -2,7 +2,7 @@
 
 @section("content")
 <!-- Body: Body -->
-<!--<div class="body d-flex py-lg-4 py-3">
+<div class="body d-flex py-lg-4 py-3">
     <div class="container-fluid">
         <div class="row g-1 mb-5 row-deck">            
             <div class="col-xl-12 col-lg-12 col-md-12">
@@ -11,12 +11,42 @@
                         <h5 class="m-0 text-primary">Resource Recovery Facility Consolidated</h5>
                     </div>
                     <div class="card-body">
+                    <form method="post" action="{{ route('rrf.showc') }}">
+                            @csrf
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    <label class="form-label">District</label>
+                                    <select class="form-control select2 fsub" name="district">
+                                        <option value="0">Select</option>
+                                        @foreach($districts as $key => $ds)
+                                            <option value="{{ $ds->id }}"  {{ ($ds->id == $district) ? 'selected' : '' }}>{{ $ds->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Month</label>
+                                    <select class="form-control select2 fsub" name="month">
+                                        <option value="0">Select</option>                                        
+                                        @foreach($months as $key => $mn)
+                                            <option value="{{ $mn->id }}"  {{ ($mn->id == $month) ? 'selected' : '' }}>{{ $mn->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Year</label>                                
+                                    <select class="form-control select2 fsub" name="year">
+                                        <option value="0">Select</option>                                        
+                                        <option value="{{ $year }}" selected>{{ $year }}</option>
+                                    </select>
+                                </div>                            
+                            </div>
+                        </form>
                         <div class="row mb-3">
                             <div class="col-md-12 table-responsive">
                                 <table class="table table-bordered table-sm table-striped table-hover">
                                     <thead>
-                                        <tr><th></th><th colspan="4" class="text-center">Corporations</th><th colspan="4" class="text-center">Municipalities</th><th colspan="4" class="text-center">Grama Panchayats</th></tr>
-                                        <tr><th>District</th><td>No.of Corp.</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td><td>No.of Municipals.</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td><td>No.of Panchayats.</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td></tr>
+                                        <tr><th></th><th colspan="4" class="text-center">Corporations</th><th colspan="4" class="text-center">Municipalities</th><th colspan="4" class="text-center">Grama Panchayats</th><th colspan="4" class="text-center">Block Panachayats</th></tr>
+                                        <tr><th>District</th><td>No.of Corp.</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td><td>No.of Municipals.</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td><td>No.of Panchayats.</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td><td>No.of Blocks</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td></tr>
                                     </thead>
                                     <tbody>
                                         @php $c = 1; @endphp
@@ -27,6 +57,8 @@
                                                 $rrf_mp_reqd = DB::table('municipalities as m')->leftJoin('districts as d', 'm.district', 'd.id')->where('m.district', $row->id)->sum('m.rrf_reqd');
                                                 $rrf_gp = DB::table('rrf_data as md')->leftJoin('rrf_masters as m', 'm.id', 'md.rrf_id')->where('md.lsg_type', 'GP')->where('m.district', $row->id)->sum('md.q2');
                                                 $rrf_gp_reqd = DB::table('gramapanchayats as g')->leftJoin('districts as d', 'g.district', 'd.id')->where('g.district', $row->id)->sum('g.mcf_reqd');
+                                                $rrf_bl = DB::table('rrf_data as md')->leftJoin('rrf_masters as m', 'm.id', 'md.rrf_id')->where('md.lsg_type', 'BL')->where('m.district', $row->id)->sum('md.q2');
+                                                $rrf_bl_reqd = DB::table('blocks as b')->leftJoin('districts as d', 'b.district', 'd.id')->where('b.district', $row->id)->sum('b.mcf_reqd');
                                             @endphp
                                             <tr>
                                                 <td>{{ $row->district }}</td>
@@ -44,6 +76,11 @@
                                                 <td class="text-end">{{ $rrf_gp_reqd }}</td>
                                                 <td class="text-end">{{ $rrf_gp }}</td>
                                                 <td class="text-end">{{ ($rrf_gp_reqd > 0 && $rrf_gp > 0) ? number_format((100/$rrf_gp_reqd)*$rrf_gp, 2) : 0.00 }}%</td>
+
+                                                <td class="text-end">{{ DB::table('blocks as b')->leftJoin('districts as d', 'b.district', 'd.id')->where('b.district', $row->id)->count('b.id') }}</td>
+                                                <td class="text-end">{{ $rrf_bl_reqd }}</td>
+                                                <td class="text-end">{{ $rrf_bl }}</td>
+                                                <td class="text-end">{{ ($rrf_bl_reqd > 0 && $rrf_bl > 0) ? number_format((100/$rrf_bl_reqd)*$rrf_bl, 2) : 0.00 }}%</td>
                                             </tr>
                                         @empty
                                             <tr><td colspan="5" class="text-center">No records found</td></tr>
@@ -57,8 +94,8 @@
             </div>
         </div>
     </div>
-</div>-->
-<div class="body d-flex py-lg-4 py-3">
+</div>
+<!--<div class="body d-flex py-lg-4 py-3">
     <div class="container-fluid">
         <div class="row g-1 mb-5 row-deck">            
             <div class="col-xl-12 col-lg-12 col-md-12 table-responsive">
@@ -964,5 +1001,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 @endsection
