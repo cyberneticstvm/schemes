@@ -87,7 +87,7 @@
                                                 @endif
                                             @endforeach
 
-                                            <tr><td class="bg-success text-white">Block Panachayats {{ count($blocks) }}</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
+                                            <tr><td class="bg-success text-white">Block Panachayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             
                                             @foreach($records as $key => $block)
                                                 @if($block->lsg_type == 'BL')

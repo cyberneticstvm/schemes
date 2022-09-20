@@ -110,7 +110,7 @@ class HKSController extends Controller
         $districts = DB::table('districts')->orderBy('id')->get();
         $months = DB::table('months')->orderBy('id')->get();
         $year = $record->year; $district = 0; $month = 0;
-        $data = DB::table('districts as d')->leftJoin('corporations as c', 'd.id', 'c.district')->leftJoin('hks_masters as m', 'd.id', 'm.district')->selectRaw("d.id, d.name as district, count(c.id) as ccount, IFNULL(sum(c.hks_reqd), 0) hks_reqd")->where('m.month', $this->month)->where('m.year', $this->year)->orderBy('id', 'asc')->groupBy('d.id', 'd.name')->get();
+        $data = DB::table('districts as d')->leftJoin('corporations as c', 'd.id', 'c.district')->leftJoin('hks_masters as m', 'd.id', 'm.district')->selectRaw("d.id, d.name as district, count(c.id) as ccount, IFNULL(count(c.hks_reqd), 0) hks_reqd")->where('m.month', $this->month)->where('m.year', $this->year)->orderBy('id', 'asc')->groupBy('d.id', 'd.name')->get();
         return view("hks.consolidated", compact('data', 'districts', 'months', 'year', 'record', 'district', 'month'));
     }
 
@@ -130,7 +130,7 @@ class HKSController extends Controller
             $records = DB::table("hks_data as md")->leftJoin('hks_masters as m', 'm.id', '=', 'md.hks_id')->select('md.id', 'm.id as hksid', 'md.lsg_type', 'md.lsg_id')->where('m.district', $district)->where('m.month', $month)->where('m.year', $year)->get();
             return view("hks.showc", compact('records', 'districts', 'months', 'year', 'record', 'month', 'district', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme'));
         else:
-            $data = DB::table('districts as d')->leftJoin('corporations as c', 'd.id', 'c.district')->leftJoin('hks_masters as m', 'd.id', 'm.district')->selectRaw("d.id, d.name as district, count(c.id) as ccount, IFNULL(sum(c.hks_reqd), 0) hks_reqd")->orderBy('id', 'asc')->groupBy('d.id', 'd.name')->where('m.month', $record->month)->where('m.year', $record->year)->get();
+            $data = DB::table('districts as d')->leftJoin('corporations as c', 'd.id', 'c.district')->leftJoin('hks_masters as m', 'd.id', 'm.district')->selectRaw("d.id, d.name as district, count(c.id) as ccount, IFNULL(count(c.hks_reqd), 0) hks_reqd")->orderBy('id', 'asc')->groupBy('d.id', 'd.name')->where('m.month', $record->month)->where('m.year', $record->year)->get();
             return view("hks.consolidated", compact('data', 'districts', 'months', 'year', 'record', 'district', 'month'));
         endif;
     }
