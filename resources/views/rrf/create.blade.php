@@ -81,6 +81,26 @@
                                                 </tr>
                                                 @php $k++; @endphp
                                             @endforeach
+
+                                            <tr><td class="bg-success text-white">Block Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
+                                            
+                                            @foreach($blocks as $key => $block)
+                                            @php $c = 1 @endphp
+                                                <tr>
+                                                    <td>
+                                                        {{ $block->name }}
+                                                        <input type="hidden" name="ltype{{$k}}[]" value="BL" />
+                                                        <input type="hidden" name="lid{{$k}}[]" value="{{ $block->id }}" />
+                                                    </td>
+                                                    @foreach($questions as $key => $question)
+                                                    <td>
+                                                        <input type="{{ $question->type }}" name="q{{$c++}}[]" min="0" class="form-control form-control-sm rounded-0 {{ $question->position }}" placeholder="{{ $question->placeholder }}" />
+                                                    </td>
+                                                    @endforeach
+                                                </tr>
+                                                @php $k++; @endphp
+                                            @endforeach
+
                                             <tr><td class="bg-success text-white">Grama Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             
                                             @foreach($gramapanchayats as $key => $gp)

@@ -118,19 +118,20 @@ class MCFController extends Controller
     }
 
     public function showc(Request $request){
+        $scheme = DB::table('schemes')->find(1);
         $record = McfMaster::latest()->first();
         $districts = DB::table('districts')->orderBy('id')->get();
         $months = DB::table('months')->orderBy('id')->get();
         $year = ($request->year > 0) ? $request->year : $record->year;
         $month = ($request->month > 0) ? $request->month : $record->month;
         $district = ($request->district > 0) ? $request->district : 0;
-        $questions = DB::table('questions')->where('scheme', 1)->get();       
+        $questions = DB::table('questions')->where('scheme', $scheme->id)->get();       
         if($district > 0):
             $corporations = DB::table('corporations')->where('district', $district)->orderBy('name')->get();
             $municipalities = DB::table('municipalities')->where('district', $district)->orderBy('name')->get();
             $gramapanchayats = DB::table('gramapanchayats')->where('district', $district)->orderBy('name')->get();
-            $data = DB::table("mcf_data as md")->leftJoin('mcf_masters as m', 'm.id', '=', 'md.mcf_id')->where('m.district', $district)->where('m.month', $month)->where('m.year', $year)->get();
-            return view("mcf.showc", compact('data', 'districts', 'months', 'year', 'record', 'month', 'district', 'questions', 'corporations', 'municipalities', 'gramapanchayats'));
+            $records = DB::table("mcf_data as md")->leftJoin('mcf_masters as m', 'm.id', '=', 'md.mcf_id')->select('md.id', 'm.id as mcfid', 'md.lsg_type', 'md.lsg_id')->where('m.district', $district)->where('m.month', $month)->where('m.year', $year)->get();
+            return view("mcf.showc", compact('records', 'districts', 'months', 'year', 'record', 'month', 'district', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme'));
         else:
             $data = DB::table('districts as d')->leftJoin('corporations as c', 'd.id', 'c.district')->leftJoin('mcf_masters as m', 'd.id', 'm.district')->selectRaw("d.id, d.name as district, count(c.id) as ccount, IFNULL(sum(c.mcf_reqd), 0) mcf_reqd")->orderBy('id', 'asc')->groupBy('d.id', 'd.name')->where('m.month', $record->month)->where('m.year', $record->year)->get();
             return view("mcf.consolidated", compact('data', 'districts', 'months', 'year', 'record', 'district', 'month'));

@@ -31,6 +31,7 @@ Route::get('/mcf/consolidated/', [MCFController::class, 'show'])->name('mcf.show
 Route::post('/mcf/consolidated/', [MCFController::class, 'showc'])->name('mcf.showc');
 Route::get('/rrf/consolidated/', [RRFController::class, 'show'])->name('rrf.show');
 Route::get('/hks/consolidated/', [HKSController::class, 'show'])->name('hks.show');
+Route::post('/hks/consolidated/', [HKSController::class, 'showc'])->name('hks.showc');
 Route::get('/cschool/consolidated/', [CSchoolController::class, 'show'])->name('cschool.show');
 
 Route::post('/login/', [UserController::class, 'login'])->name('login');

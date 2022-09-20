@@ -86,6 +86,28 @@
                                                     @php $k++; @endphp
                                                 @endif
                                             @endforeach
+
+                                            <tr><td class="bg-success text-white">Block Panachayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
+                                            
+                                            @foreach($records as $key => $block)
+                                                @if($block->lsg_type == 'BL')
+                                                    @php $c = 1 @endphp
+                                                    <tr>
+                                                        <td>
+                                                            {{ DB::table('blocks')->where('id', $block->lsg_id)->value('name') }}
+                                                            <input type="hidden" name="ltype{{$k}}[]" value="BL" />
+                                                            <input type="hidden" name="lid{{$k}}[]" value="{{ $block->lsg_id }}" />
+                                                        </td>
+                                                        @foreach($questions as $key => $question)
+                                                        <td>
+                                                            <input type="{{ $question->type }}" name="q{{$c++}}[]" min="0" class="form-control form-control-sm rounded-0 {{ $question->position }}" value="{{ DB::table('rrf_data')->where('id', $block->id)->value('q'.$key+1) }}" placeholder="{{ $question->placeholder }}" />
+                                                        </td>
+                                                        @endforeach
+                                                    </tr>
+                                                    @php $k++; @endphp
+                                                @endif
+                                            @endforeach
+
                                             <tr><td class="bg-success text-white">Grama Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             
                                             @foreach($records as $key => $gp)

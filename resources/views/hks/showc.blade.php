@@ -8,10 +8,10 @@
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="card">
                     <div class="card-header py-3 bg-transparent border-bottom-0">
-                        <h5 class="m-0 text-primary">Material Collection Facility Consolidated</h5>
+                        <h5 class="m-0 text-primary">Haritha Karma Sena Consolidated</h5>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('mcf.showc') }}">
+                    <form method="post" action="{{ route('hks.showc') }}">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-md-2">
@@ -19,7 +19,7 @@
                                     <select class="form-control select2 fsub" name="district">
                                         <option value="0">Select</option>
                                         @foreach($districts as $key => $ds)
-                                            <option value="{{ $ds->id }}" {{ ($ds->id == $district) ? 'selected' : '' }}>{{ $ds->name }}</option>
+                                            <option value="{{ $ds->id }}"  {{ ($ds->id == $district) ? 'selected' : '' }}>{{ $ds->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -28,7 +28,7 @@
                                     <select class="form-control select2 fsub" name="month">
                                         <option value="0">Select</option>                                        
                                         @foreach($months as $key => $mn)
-                                            <option value="{{ $mn->id }}" {{ ($mn->id == $month) ? 'selected' : '' }}>{{ $mn->name }}</option>
+                                            <option value="{{ $mn->id }}"  {{ ($mn->id == $month) ? 'selected' : '' }}>{{ $mn->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -41,7 +41,7 @@
                                 </div>                            
                             </div>
                         </form>
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col-md-12 vh-100 overflow-auto table-responsive">
                                 <table class="tblLsg table table-bordered">
                                     <thead class="stickytblhead text-primary"><tr>
@@ -62,7 +62,7 @@
                                                         </td>
                                                         @foreach($questions as $key => $question)
                                                         <td>
-                                                            {{ DB::table('mcf_data')->where('id', $corp->id)->where('mcf_id', $corp->mcfid)->value('q'.$key+1) }}
+                                                            {{ DB::table('hks_data')->where('id', $corp->id)->value('q'.$key+1) }}
                                                         </td>
                                                         @endforeach
                                                     </tr>
@@ -80,7 +80,7 @@
                                                     </td>
                                                     @foreach($questions as $key => $question)
                                                     <td>
-                                                        {{ DB::table('mcf_data')->where('id', $mun->id)->where('mcf_id', $mun->mcfid)->value('q'.$key+1) }}
+                                                        {{ DB::table('hks_data')->where('id', $mun->id)->value('q'.$key+1) }}
                                                     </td>
                                                     @endforeach
                                                 </tr>
@@ -98,7 +98,7 @@
                                                     </td>
                                                     @foreach($questions as $key => $question)
                                                     <td>
-                                                        {{ DB::table('mcf_data')->where('id', $gp->id)->where('mcf_id', $gp->mcfid)->value('q'.$key+1) }}                                                        
+                                                        {{ DB::table('hks_data')->where('id', $gp->id)->value('q'.$key+1) }}                                                     
                                                     </td>
                                                     @endforeach
                                                 </tr>
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                     </div>            
-                </div> <!-- .card end -->
+                </div>
             </div>
         </div>
     </div>

@@ -46,18 +46,19 @@ class RRFController extends Controller
         $corporations = DB::table('corporations')->where('district', Auth::user()->district)->orderBy('name')->get();
         $municipalities = DB::table('municipalities')->where('district', Auth::user()->district)->orderBy('name')->get();
         $gramapanchayats = DB::table('gramapanchayats')->where('district', Auth::user()->district)->orderBy('name')->get();
+        $blocks = DB::table('blocks')->where('district', Auth::user()->district)->orderBy('name')->get();
         $year = $this->year; $mname = $this->month_name; $month = $this->month;
         $data = RrfMaster::where('district', Auth::user()->district)->where('month', $month)->where('year', $year)->get()->first();
         $prev_month_data = RrfMaster::where('district', Auth::user()->district)->where('month', $this->prev_month)->where('year', $this->prev_month_year)->get()->first();
         if($data):
             $records = DB::table('rrf_data')->where('rrf_id', $data->id)->orderBy('id')->get();
-            return view('rrf.edit', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname', 'data', 'records'));
+            return view('rrf.edit', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'blocks', 'scheme', 'year', 'month', 'mname', 'data', 'records'));
         elseif($prev_month_data):
             $data = $prev_month_data;
             $records = DB::table('rrf_data')->where('rrf_id', $data->id)->orderBy('id')->get();
-            return view('rrf.edit', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname', 'data', 'records'));
+            return view('rrf.edit', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'blocks', 'scheme', 'year', 'month', 'mname', 'data', 'records'));
         else:
-            return view('rrf.create', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'scheme', 'year', 'month', 'mname'));
+            return view('rrf.create', compact('districts', 'questions', 'corporations', 'municipalities', 'gramapanchayats', 'blocks', 'scheme', 'year', 'month', 'mname'));
         endif;
     }
 

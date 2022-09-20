@@ -2,7 +2,7 @@
 
 @section("content")
 <!-- Body: Body -->
-<!--<div class="body d-flex py-lg-4 py-3">
+<div class="body d-flex py-lg-4 py-3">
     <div class="container-fluid">
         <div class="row g-1 mb-5 row-deck">            
             <div class="col-xl-12 col-lg-12 col-md-12">
@@ -87,8 +87,8 @@
             </div>
         </div>
     </div>
-</div>-->
-<div class="body d-flex py-lg-4 py-3">
+</div>
+<!--<div class="body d-flex py-lg-4 py-3">
     <div class="container-fluid">
         <div class="row g-1 mb-5 row-deck">            
             <div class="col-xl-12 col-lg-12 col-md-12 table-responsive">
@@ -895,5 +895,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 @endsection
