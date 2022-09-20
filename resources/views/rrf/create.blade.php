@@ -82,7 +82,7 @@
                                                 @php $k++; @endphp
                                             @endforeach
 
-                                            <tr><td class="bg-success text-white">Block Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
+                                            <tr><td class="bg-success text-white">Block Panchayats {{ count($blocks) }}</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
                                             
                                             @foreach($blocks as $key => $block)
                                             @php $c = 1 @endphp
