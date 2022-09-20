@@ -56,9 +56,9 @@
                                                 $rrf_mp = DB::table('rrf_data as md')->leftJoin('rrf_masters as m', 'm.id', 'md.rrf_id')->where('md.lsg_type', 'MP')->where('m.district', $row->id)->sum('md.q2');
                                                 $rrf_mp_reqd = DB::table('municipalities as m')->leftJoin('districts as d', 'm.district', 'd.id')->where('m.district', $row->id)->sum('m.rrf_reqd');
                                                 $rrf_gp = DB::table('rrf_data as md')->leftJoin('rrf_masters as m', 'm.id', 'md.rrf_id')->where('md.lsg_type', 'GP')->where('m.district', $row->id)->sum('md.q2');
-                                                $rrf_gp_reqd = DB::table('gramapanchayats as g')->leftJoin('districts as d', 'g.district', 'd.id')->where('g.district', $row->id)->sum('g.mcf_reqd');
+                                                $rrf_gp_reqd = DB::table('gramapanchayats as g')->leftJoin('districts as d', 'g.district', 'd.id')->where('g.district', $row->id)->sum('g.rrf_reqd');
                                                 $rrf_bl = DB::table('rrf_data as md')->leftJoin('rrf_masters as m', 'm.id', 'md.rrf_id')->where('md.lsg_type', 'BL')->where('m.district', $row->id)->sum('md.q2');
-                                                $rrf_bl_reqd = DB::table('blocks as b')->leftJoin('districts as d', 'b.district', 'd.id')->where('b.district', $row->id)->sum('b.mcf_reqd');
+                                                $rrf_bl_reqd = DB::table('blocks as b')->leftJoin('districts as d', 'b.district', 'd.id')->where('b.district', $row->id)->sum('b.rrf_reqd');
                                             @endphp
                                             <tr>
                                                 <td>{{ $row->district }}</td>
