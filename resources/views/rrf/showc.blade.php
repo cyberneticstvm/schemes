@@ -42,15 +42,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 vh-100 overflow-auto table-responsive">
-                                    <table class="tblLsg table table-bordered">
-                                        <thead class="stickytblhead text-primary"><tr>
-                                            <td>LSG Name</td>
+                                    <table class="table table-bordered">
+                                        <thead class="stickytblhead"><tr>
+                                            <td class="text-dark">LSG Name</td>
                                             @foreach($questions as $key => $question)
-                                            <td><a href="javascript:void(0)" data-toggle="tooltip" title="{{ $question->name }}" class="text-white">{{ $question->short_name }}</a></td>
+                                            <td><a href="javascript:void(0)" data-toggle="tooltip" title="{{ $question->name }}" class="">{{ $question->short_name }}</a></td>
                                             @endforeach
                                         </tr></thead>
                                         <tbody>
-                                            <tr><td class="bg-success text-white">Corporations</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
+                                            @if($corporations && count($corporations) > 0)
+                                            <tr><td class="bg-success">Corporations</td><td colspan="{{ $scheme->question_count }}" class=""></td></tr>
+                                            @endif
                                             @php $k = 0; @endphp
                                             @foreach($records as $key => $corp)
                                                 @if($corp->lsg_type == 'CO')
@@ -68,7 +70,7 @@
                                                     @php $k++; @endphp
                                                 @endif
                                             @endforeach
-                                            <tr><td class="bg-success text-white">Municipalities</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
+                                            <tr><td class="bg-success">Municipalities</td><td colspan="{{ $scheme->question_count }}" class=""></td></tr>
                                             
                                             @foreach($records as $key => $mun)
                                                 @if($mun->lsg_type == 'MP')
@@ -87,7 +89,7 @@
                                                 @endif
                                             @endforeach
 
-                                            <tr><td class="bg-success text-white">Block Panachayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
+                                            <tr><td class="bg-success">Block Panachayats</td><td colspan="{{ $scheme->question_count }}" class=""></td></tr>
                                             
                                             @foreach($records as $key => $block)
                                                 @if($block->lsg_type == 'BL')
@@ -106,7 +108,7 @@
                                                 @endif
                                             @endforeach
 
-                                            <tr><td class="bg-success text-white">Grama Panchayats</td><td colspan="{{ $scheme->question_count }}" class="bg-success text-white"></td></tr>
+                                            <tr><td class="bg-success">Grama Panchayats</td><td colspan="{{ $scheme->question_count }}" class=""></td></tr>
                                             
                                             @foreach($records as $key => $gp)
                                                 @if($gp->lsg_type == 'GP')

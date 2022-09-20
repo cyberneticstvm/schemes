@@ -1,7 +1,7 @@
 .stickytblhead{
     position: sticky;
     top: 0; 
-    background-color: #323A45;
+    background-color: #fff;
 }
 .stickytblhead>tr>td{
     color: #fff;

@@ -49,7 +49,7 @@
                                         <tr><th>District</th><td>No.of Corp.</td><td>HKS's Rqd</td><td>HKS's Functional</td><td>%</td><td>No.of Municipals.</td><td>HKS's Rqd</td><td>HKS's Functional</td><td>%</td><td>No.of Panchayats.</td><td>HKS's Rqd</td><td>HKS's Functional</td><td>%</td></tr>
                                     </thead>
                                     <tbody>
-                                        @php $c = 1; @endphp
+                                        @php $c = 1; $a= 0; $b = 0; $c = 0; $d = 0; $e = 0; $e1 = 0; $f = 0; $g = 0; $h = 0; $i = 0; $i1 = 0; $j = 0; $k = 0; $l = 0; $m = 0; $n = 0; $o = 0; @endphp
                                         @forelse($data as $key => $row)
                                             @php
                                                 $hks_co = DB::table('hks_data as md')->leftJoin('hks_masters as m', 'm.id', 'md.hks_id')->where('md.lsg_type', 'CO')->where('m.district', $row->id)->sum('md.q2');
@@ -60,24 +60,36 @@
                                             @endphp
                                             <tr>
                                                 <td>{{ $row->district }}</td>
-                                                <td class="text-end">{{ $row->ccount }}</td>
-                                                <td class="text-end">{{ $row->hks_reqd }}</td>
-                                                <td class="text-end">{{ $hks_co }}</td>
-                                                <td class="text-end">{{ ($row->hks_reqd > 0 && $hks_co > 0) ? number_format((100/$row->hks_reqd)*$hks_co, 2) : 0.00 }}%</td>
+                                                <td class="text-right">{{ $row->ccount }}</td>
+                                                <td class="text-right">{{ $row->hks_reqd }}</td>
+                                                <td class="text-right">{{ $hks_co }}</td>
+                                                <td class="text-right">{{ ($row->hks_reqd > 0 && $hks_co > 0) ? number_format((100/$row->hks_reqd)*$hks_co, 2) : 0.00 }}%</td>
 
-                                                <td class="text-end">{{ DB::table('municipalities as m')->leftJoin('districts as d', 'm.district', 'd.id')->where('m.district', $row->id)->count('m.id') }}</td>
-                                                <td class="text-end">{{ $hks_mp_reqd }}</td>
-                                                <td class="text-end">{{ $hks_mp }}</td>
-                                                <td class="text-end">{{ ($hks_mp_reqd > 0 && $hks_mp > 0) ? number_format((100/$hks_mp_reqd)*$hks_mp, 2) : 0.00 }}%</td>
+                                                <td class="text-right">{{ $e1 = DB::table('municipalities as m')->leftJoin('districts as d', 'm.district', 'd.id')->where('m.district', $row->id)->count('m.id') }}</td>
+                                                <td class="text-right">{{ $hks_mp_reqd }}</td>
+                                                <td class="text-right">{{ $hks_mp }}</td>
+                                                <td class="text-right">{{ $h = ($hks_mp_reqd > 0 && $hks_mp > 0) ? number_format((100/$hks_mp_reqd)*$hks_mp, 2) : 0.00 }}%</td>
 
-                                                <td class="text-end">{{ DB::table('gramapanchayats as g')->leftJoin('districts as d', 'g.district', 'd.id')->where('g.district', $row->id)->count('g.id') }}</td>
-                                                <td class="text-end">{{ $hks_gp_reqd }}</td>
-                                                <td class="text-end">{{ $hks_gp }}</td>
-                                                <td class="text-end">{{ ($hks_gp_reqd > 0 && $hks_gp > 0) ? number_format((100/$hks_gp_reqd)*$hks_gp, 2) : 0.00 }}%</td>
+                                                <td class="text-right">{{ $i1 = DB::table('gramapanchayats as g')->leftJoin('districts as d', 'g.district', 'd.id')->where('g.district', $row->id)->count('g.id') }}</td>
+                                                <td class="text-right">{{ $hks_gp_reqd }}</td>
+                                                <td class="text-right">{{ $hks_gp }}</td>
+                                                <td class="text-right">{{ ($hks_gp_reqd > 0 && $hks_gp > 0) ? number_format((100/$hks_gp_reqd)*$hks_gp, 2) : 0.00 }}%</td>
                                             </tr>
+                                            @php 
+                                                $a += $row->ccount;
+                                                $b += $row->hks_reqd;
+                                                $c += $hks_co;
+                                                $e += $e1;
+                                                $f += $hks_mp_reqd;
+                                                $g += $hks_mp;
+                                                $i += $i1;
+                                                $j += $hks_gp_reqd;
+                                                $k += $hks_gp;
+                                                $m += $d; $n += $h; $o += $l;
+                                            @endphp
                                         @empty
-                                            <tr><td colspan="5" class="text-center">No records found</td></tr>
                                         @endforelse
+                                        <tr><td class="font-weight-bold text-right">Total</td><td class="font-weight-bold text-right">{{ $a }}</td><td class="font-weight-bold text-right">{{ $b }}</td><td class="font-weight-bold text-right">{{ $c }}</td><td class="font-weight-bold text-right">{{ number_format((100/$b)*$c, 2) }}%</td><td class="font-weight-bold text-right">{{ $e }}</td><td class="font-weight-bold text-right">{{ $f }}</td><td class="font-weight-bold text-right">{{ $g }}</td><td class="font-weight-bold text-right">{{ number_format((100/$f)*$g, 2) }}%</td><td class="font-weight-bold text-right">{{ $i }}</td><td class="font-weight-bold text-right">{{ $j }}</td><td class="font-weight-bold text-right">{{ $k }}</td><td class="font-weight-bold text-right">{{ number_format((100/$j)*$k, 2) }}%</td></tr>
                                     </tbody>
                                 </table>
                             </div>

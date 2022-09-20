@@ -48,14 +48,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <!-- Level two dropdown-->
               <li class="dropdown-submenu dropdown-hover">
-                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">MCF</a>
+                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">MCF</a>                
                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                 @if((Auth::user()))
                   <li>
                     <a tabindex="-1" href="/mcf/add/" class="dropdown-item">Add</a>
                   </li>
                   <li><a href="/mcf/" class="dropdown-item">List</a></li>
+                  @endif
                   <li><a href="/mcf/consolidated/" class="dropdown-item">Consolidated</a></li>
                 </ul>
+                
               </li>
               <!-- End Level two -->
 
@@ -64,13 +67,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- Level two dropdown-->
               <li class="dropdown-submenu dropdown-hover">
                 <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">RRF</a>
+                
                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                @if((Auth::user()))
                   <li>
                     <a tabindex="-1" href="/rrf/add/" class="dropdown-item">Add</a>
                   </li>
                   <li><a href="/rrf/" class="dropdown-item">List</a></li>
+                  @endif
                   <li><a href="/rrf/consolidated/" class="dropdown-item">Consolidated</a></li>
                 </ul>
+               
               </li>
               <!-- End Level two -->
 
@@ -79,13 +86,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- Level two dropdown-->
               <li class="dropdown-submenu dropdown-hover">
                 <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">HKS</a>
+                
                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                @if((Auth::user()))
                   <li>
                     <a tabindex="-1" href="/hks/add/" class="dropdown-item">Add</a>
                   </li>
                   <li><a href="/hks/" class="dropdown-item">List</a></li>
+                  @endif
                   <li><a href="/hks/consolidated/" class="dropdown-item">Consolidated</a></li>
                 </ul>
+                
               </li>
               <!-- End Level two -->
 
@@ -94,13 +105,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- Level two dropdown-->
               <li class="dropdown-submenu dropdown-hover">
                 <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">C@S</a>
+                
                 <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                @if((Auth::user()))
                   <li>
                     <a tabindex="-1" href="/cschool/add/" class="dropdown-item">Add</a>
                   </li>
                   <li><a href="/cschool/" class="dropdown-item">List</a></li>
+                  @endif
                   <li><a href="/cschool/consolidated/" class="dropdown-item">Consolidated</a></li>
                 </ul>
+               
               </li>
               <!-- End Level two -->
             </ul>
