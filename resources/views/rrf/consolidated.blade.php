@@ -45,7 +45,7 @@
                             <div class="col-md-12 table-responsive">
                                 <table class="table table-bordered table-sm table-striped table-hover">
                                     <thead>
-                                        <tr><th></th><th colspan="4" class="text-center">Corporations</th><th colspan="4" class="text-center">Municipalities</th><th colspan="4" class="text-center">Grama Panchayats</th><th colspan="4" class="text-center">Block Panachayats</th></tr>
+                                        <tr><th></th><th colspan="4" class="text-center">Corporations</th><th colspan="4" class="text-center">Municipalities</th><th colspan="2" class="text-center">Grama Panchayats</th><th colspan="4" class="text-center">Block Panachayats</th></tr>
                                         <tr><th>District</th><td>No.of Corp.</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td><td>No.of Municipals.</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td><td>No.of Panchayats.</td><!--<td>RRF's Rqd</td>--><td>RRF's Functional</td><!--<td>%</td>--><td>No.of Blocks</td><td>RRF's Rqd</td><td>RRF's Functional</td><td>%</td></tr>
                                     </thead>
                                     <tbody>
