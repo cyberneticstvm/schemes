@@ -52,10 +52,10 @@
                                         @php $c = 1; $a= 0; $b = 0; $c = 0; $d = 0; $e = 0; $e1 = 0; $f = 0; $g = 0; $h = 0; $i = 0; $i1 = 0; $j = 0; $k = 0; $l = 0; $m = 0; $n = 0; $o = 0; @endphp
                                         @forelse($data as $key => $row)
                                             @php
-                                                $mcf_co = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'CO')->where('m.district', $row->id)->sum('md.q1');
-                                                $mcf_mp = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'MP')->where('m.district', $row->id)->sum('md.q1');
+                                                $mcf_co = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'CO')->where('m.district', $row->id)->sum(DB::raw('md.q1+md.q2'));
+                                                $mcf_mp = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'MP')->where('m.district', $row->id)->sum(DB::raw('md.q1+md.q2'));
                                                 $mcf_mp_reqd = DB::table('municipalities as m')->leftJoin('districts as d', 'm.district', 'd.id')->where('m.district', $row->id)->sum('m.mcf_reqd');
-                                                $mcf_gp = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'GP')->where('m.district', $row->id)->sum('md.q1');
+                                                $mcf_gp = DB::table('mcf_data as md')->leftJoin('mcf_masters as m', 'm.id', 'md.mcf_id')->where('md.lsg_type', 'GP')->where('m.district', $row->id)->sum(DB::raw('md.q1+md.q2'));
                                                 $mcf_gp_reqd = DB::table('gramapanchayats as g')->leftJoin('districts as d', 'g.district', 'd.id')->where('g.district', $row->id)->sum('g.mcf_reqd');
                                             @endphp
                                             <tr>
