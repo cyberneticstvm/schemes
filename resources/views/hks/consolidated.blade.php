@@ -99,7 +99,7 @@
                                         <td class="font-weight-bold text-right">{{ ($f > 0) ? number_format((100/$f)*$g, 2) : 0 }}%</td>
                                         <td class="font-weight-bold text-right">{{ $i }}</td><td class="font-weight-bold text-right">{{ $j }}</td>
                                         <td class="font-weight-bold text-right">{{ $k }}</td>
-                                        <td class="font-weight-bold text-right">{{ 0($j > 0) ? number_format((100/$j)*$k, 2) : 0 }}%</td></tr>
+                                        <td class="font-weight-bold text-right">{{ ($j > 0) ? number_format((100/$j)*$k, 2) : 0 }}%</td></tr>
                                     </tbody>
                                 </table>
                             </div>
