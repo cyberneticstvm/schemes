@@ -41,7 +41,7 @@
                                         <thead class="stickytblhead text-primary"><tr>
                                             <td>LSG Name</td>
                                             @foreach($questions as $key => $question)
-                                            <td><a href="javascript:void(0)" data-toggle="tooltip" title="{{ $question->name }}" class="text-white">{{ $question->short_name }}</a></td>
+                                            <td><a href="javascript:void(0)" data-toggle="tooltip" title="{{ $question->name }}" class="text-info">{{ $question->short_name }}</a></td>
                                             @endforeach
                                         </tr></thead>
                                         <tbody>
